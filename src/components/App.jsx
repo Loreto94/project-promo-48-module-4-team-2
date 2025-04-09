@@ -5,6 +5,11 @@ import Footer from "./Footer";
 import Preview from "./Preview";
 import Form from "./Form";
 import ls from "../services/localStorage";
+import ProjectsList from "./ProjectsList";
+import ButtonProjects from "./ButtonProjects";
+import { Route, Routes, Link } from "react-router-dom";
+
+
 
 function App() {
   const [projectInfo, setProjectInfo] = useState(ls.get("User info", {
@@ -108,32 +113,37 @@ function App() {
     <div className="container">
       <Header />
       <main className="main">
-        <section className="hero">
-          <h2 className="title">Proyectos molones</h2>
-          <p className="hero__text">
-            Escaparate en línea para recoger ideas a través de la tecnología
-          </p>
-          <a className="button--link" href="" target="_blank">
-            Ver proyectos
-          </a>
-        </section>
-        <Preview project={projectInfo} />
-        <Form
-          project={projectInfo}
-          onChangeProjectName={changeProjectName}
-          onChangeSlogan={changeSlogan}
-          onChangeRepo={changeRepo}
-          onChangeDemo={changeDemo}
-          onChangeTech={changeTech}
-          onChangeDesc={changeDesc}
-          onChangeName={changeName}
-          onChangeJob={changeJob}
-          onChangeImageProject={onChangeImage}
-          onChangeUserImage={onChangeUserImage}
-          onSaveProject={handleSubmitProject}
-          url={url}
-          isHidden={isHidden}
-        />
+        <Routes>
+          <Route path="/" element={
+            <>
+              <section className="hero">
+                <h2 className="title">Proyectos molones</h2>
+                <p className="hero__text">
+                  Escaparate en línea para recoger ideas a través de la tecnología
+                </p>
+                <ButtonProjects textButton="Ver proyectos" linkButton="" />
+              </section>
+              <Preview project={projectInfo} />
+              <Form
+                project={projectInfo}
+                onChangeProjectName={changeProjectName}
+                onChangeSlogan={changeSlogan}
+                onChangeRepo={changeRepo}
+                onChangeDemo={changeDemo}
+                onChangeTech={changeTech}
+                onChangeDesc={changeDesc}
+                onChangeName={changeName}
+                onChangeJob={changeJob}
+                onChangeImageProject={onChangeImage}
+                onChangeUserImage={onChangeUserImage}
+                onSaveProject={handleSubmitProject}
+                url={url}
+                isHidden={isHidden}
+              />
+            </>
+          } />
+        </Routes>
+
       </main>
       <Footer />
     </div>

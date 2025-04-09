@@ -2,6 +2,7 @@ import logoCoolProjects from "../images/laptop-code-solid.svg";
 import LogoAdalab from "./LogoAdalab";
 import "../scss/components/Header.scss";
 
+
 function Header() {
   return (
     <header className="header">
