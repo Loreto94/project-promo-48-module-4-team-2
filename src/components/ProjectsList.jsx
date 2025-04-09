@@ -1,18 +1,28 @@
 import ProjectCard from "./ProjectCard";
-import ButtonProjects from "./ButtonProjects";
+import Hero from "./Hero";
 
-function ProjectsList () {
-    return (
-        <section>
-            
-            <ul>
-                <li><ProjectCard /></li>
-                <li><ProjectCard /></li>
-                <li><ProjectCard /></li>
-                <li><ProjectCard /></li>
-            </ul>
-        </section>
-    )
+function ProjectsList({ project }) {
+  return (
+    <>
+      <Hero textButton="Nuevo proyecto" linkButton="/" />
+      <section className="cardList--container">
+        <ul className="cardList">
+          <li>
+            <ProjectCard project={project} />
+          </li>
+          <li>
+            <ProjectCard project={project} />
+          </li>
+          <li>
+            <ProjectCard project={project} />
+          </li>
+          <li>
+            <ProjectCard project={project} />
+          </li>
+        </ul>
+      </section>
+    </>
+  );
 }
 
 export default ProjectsList;

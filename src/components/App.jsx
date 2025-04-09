@@ -4,26 +4,26 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Preview from "./Preview";
 import Form from "./Form";
+import Hero from "./Hero";
 import ls from "../services/localStorage";
 import ProjectsList from "./ProjectsList";
-import ButtonProjects from "./ButtonProjects";
 import { Route, Routes, Link } from "react-router-dom";
 
-
-
 function App() {
-  const [projectInfo, setProjectInfo] = useState(ls.get("User info", {
-    name: "",
-    slogan: "",
-    repo: "",
-    demo: "",
-    technologies: "",
-    desc: "",
-    autor: "",
-    job: "",
-    image: "",
-    photo: "",
-  }));
+  const [projectInfo, setProjectInfo] = useState(
+    ls.get("User info", {
+      name: "",
+      slogan: "",
+      repo: "",
+      demo: "",
+      technologies: "",
+      desc: "",
+      autor: "",
+      job: "",
+      image: "",
+      photo: "",
+    })
+  );
   const [url, setUrl] = useState("");
   const [isHidden, setIsHidden] = useState(true);
 
@@ -114,36 +114,36 @@ function App() {
       <Header />
       <main className="main">
         <Routes>
-          <Route path="/" element={
-            <>
-              <section className="hero">
-                <h2 className="title">Proyectos molones</h2>
-                <p className="hero__text">
-                  Escaparate en línea para recoger ideas a través de la tecnología
-                </p>
-                <ButtonProjects textButton="Ver proyectos" linkButton="" />
-              </section>
-              <Preview project={projectInfo} />
-              <Form
-                project={projectInfo}
-                onChangeProjectName={changeProjectName}
-                onChangeSlogan={changeSlogan}
-                onChangeRepo={changeRepo}
-                onChangeDemo={changeDemo}
-                onChangeTech={changeTech}
-                onChangeDesc={changeDesc}
-                onChangeName={changeName}
-                onChangeJob={changeJob}
-                onChangeImageProject={onChangeImage}
-                onChangeUserImage={onChangeUserImage}
-                onSaveProject={handleSubmitProject}
-                url={url}
-                isHidden={isHidden}
-              />
-            </>
-          } />
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero textButton="Ver proyectos" linkButton="/projects" />
+                <Preview project={projectInfo} />
+                <Form
+                  project={projectInfo}
+                  onChangeProjectName={changeProjectName}
+                  onChangeSlogan={changeSlogan}
+                  onChangeRepo={changeRepo}
+                  onChangeDemo={changeDemo}
+                  onChangeTech={changeTech}
+                  onChangeDesc={changeDesc}
+                  onChangeName={changeName}
+                  onChangeJob={changeJob}
+                  onChangeImageProject={onChangeImage}
+                  onChangeUserImage={onChangeUserImage}
+                  onSaveProject={handleSubmitProject}
+                  url={url}
+                  isHidden={isHidden}
+                />
+              </>
+            }
+          />
+          <Route
+            path="/projects"
+            element={<ProjectsList project={projectInfo} />}
+          />
         </Routes>
-
       </main>
       <Footer />
     </div>

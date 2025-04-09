@@ -54,6 +54,13 @@
   transform: translateY(-45px);
 }
 
+.cardList {
+  width: 70vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .card {
   display: grid;
   grid-template-columns: 40% 60%;
@@ -364,10 +371,10 @@
   text-align: center;
   padding-bottom: 20px;
   font: var(--font-card-title);
-  
+
   a {
     color: #c0b7e8;
-    
+
     &:hover {
       color: var(--color-dark-lilac);
     }
