@@ -13,6 +13,10 @@
     grid-template-columns: 6fr 5fr;
     gap: 2rem;
   }
+
+  .cardList {
+    background-color: #14d9c4;
+  }
 }
 
 .hero {
@@ -54,11 +58,22 @@
   transform: translateY(-45px);
 }
 
+.cardList--container {
+  display: flex;
+  justify-content: center;
+  min-height: 85vh;
+}
+
 .cardList {
   width: 70vw;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
+
+  li {
+    max-width: 270px;
+  }
 }
 
 .card {

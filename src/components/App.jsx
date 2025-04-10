@@ -112,12 +112,12 @@ function App() {
   return (
     <div className="container">
       <Header />
-      <main className="main">
+      <main>
         <Routes>
           <Route
             path="/"
             element={
-              <>
+              <section className="main">
                 <Hero textButton="Ver proyectos" linkButton="/projects" />
                 <Preview project={projectInfo} />
                 <Form
@@ -136,12 +136,16 @@ function App() {
                   url={url}
                   isHidden={isHidden}
                 />
-              </>
+              </section>
             }
           />
           <Route
             path="/projects"
-            element={<ProjectsList project={projectInfo} />}
+            element={
+              <section className="second--main">
+                <ProjectsList project={projectInfo} />
+              </section>
+            }
           />
         </Routes>
       </main>
