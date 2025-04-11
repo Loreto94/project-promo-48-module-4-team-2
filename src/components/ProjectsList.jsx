@@ -19,6 +19,9 @@ function ProjectsList({ project }) {
           <li>
             <ProjectCard project={project} />
           </li>
+          <li>
+            <ProjectCard project={project} />
+          </li>
         </ul>
       </section>
     </>
