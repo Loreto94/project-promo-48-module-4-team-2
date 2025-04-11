@@ -19,3 +19,8 @@ CREATE TABLE userData (
 );
 
 SELECT * FROM projectsData, userData;
+
+USE defaultdb;
+
+ALTER TABLE projectsData ADD COLUMN fk_userData INT NOT NULL;
+ALTER TABLE projectsData ADD FOREIGN KEY (fk_userData) REFERENCES userData(idUser);
