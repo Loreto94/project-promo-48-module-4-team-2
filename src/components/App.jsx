@@ -7,7 +7,7 @@ import Form from "./Form";
 import Hero from "./Hero";
 import ls from "../services/localStorage";
 import ProjectsList from "./ProjectsList";
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   const [projectInfo, setProjectInfo] = useState(
@@ -109,6 +109,21 @@ function App() {
     setIsHidden(false);
   };
 
+  const handleReset = () => {
+    setProjectInfo({
+      name: "",
+      slogan: "",
+      repo: "",
+      demo: "",
+      technologies: "",
+      desc: "",
+      autor: "",
+      job: "",
+      image: "",
+      photo: "",
+    });
+  };
+
   return (
     <div className="container">
       <Header />
@@ -135,6 +150,7 @@ function App() {
                   onSaveProject={handleSubmitProject}
                   url={url}
                   isHidden={isHidden}
+                  onReset={handleReset}
                 />
               </section>
             }

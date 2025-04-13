@@ -41,8 +41,6 @@
   }
 }
 
-
-
 .hero .title {
   font: var(--font-title-big);
   margin-bottom: 8px;
@@ -78,7 +76,6 @@
   min-height: 85vh;
 }
 
-
 @media screen and (max-width: 900px) {
   .cardList {
     width: 70vw;
@@ -91,8 +88,6 @@
       width: 300px;
     }
   }
-
-
 }
 
 .card {
@@ -417,6 +412,10 @@
 
 .resultHidden {
   display: none;
+}
+
+.reset {
+  justify-self: flex-end;
 }
 
 /* ICONS */

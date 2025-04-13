@@ -54,9 +54,14 @@ function Form(props) {
     props.onSaveProject();
   };
 
+  const handleResetButton = () => {
+    props.onReset();
+  }
+
   return (
     <form className="addForm">
       <h2 className="title">Información</h2>
+      <input type="reset" value="Reset" onClick={handleResetButton} className="button reset" />
       <fieldset className="addForm__group">
         <legend className="addForm__title">Cuéntanos sobre el proyecto</legend>
         <input

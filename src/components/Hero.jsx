@@ -1,4 +1,3 @@
-// import ButtonProjects from "./ButtonProjects";
 import { Link } from "react-router-dom";
 
 function Hero({ linkButton, textButton }) {
