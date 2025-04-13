@@ -26,6 +26,7 @@ function App() {
   );
   const [url, setUrl] = useState("");
   const [isHidden, setIsHidden] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     ls.set("User info", projectInfo);
@@ -95,6 +96,7 @@ function App() {
   };
 
   const handleSubmitProject = () => {
+    setIsLoading(true);
     fetch("https://dev.adalab.es/api/projectCard", {
       method: "POST",
       headers: {
@@ -106,7 +108,8 @@ function App() {
       .then((data) => {
         setUrl(data.cardURL);
       });
-    setIsHidden(false);
+    setTimeout(() => setIsHidden(false), 2000);
+    setTimeout(() => setIsLoading(false), 2000);
   };
 
   const handleReset = () => {
@@ -122,6 +125,7 @@ function App() {
       image: "",
       photo: "",
     });
+    setIsHidden(true)
   };
 
   return (
@@ -151,6 +155,7 @@ function App() {
                   url={url}
                   isHidden={isHidden}
                   onReset={handleReset}
+                  isLoading={isLoading}
                 />
               </section>
             }

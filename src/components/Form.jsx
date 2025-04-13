@@ -1,4 +1,5 @@
 import GetAvatar from "./GetAvatar";
+import Loader from "./Loader";
 
 function Form(props) {
   const handleChangeProjectName = (ev) => {
@@ -158,6 +159,7 @@ function Form(props) {
           Guardar proyecto
         </button>
       </fieldset>
+      <Loader classLoader={props.isLoading === true ? "loader" : ""} />
       <p className={`resultUrl ${props.isHidden ? "resultHidden" : ""}`}>
         Mira el resultado de tu proyecto <a href={props.url} target="_blank">aquí</a>
       </p>
