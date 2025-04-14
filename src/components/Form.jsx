@@ -161,7 +161,7 @@ function Form(props) {
       </fieldset>
       <Loader classLoader={props.isLoading === true ? "loader" : ""} />
       <p className={`resultUrl ${props.isHidden ? "resultHidden" : ""}`}>
-        Mira el resultado de tu proyecto <a href={props.url} target="_blank">aquí</a>
+        {props.url === undefined ? "Ha habido un error" : <a href={props.url}>Mira el resultado de tu proyecto aquí</a>} 
       </p>
     </form>
   );

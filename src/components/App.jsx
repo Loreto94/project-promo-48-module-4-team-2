@@ -107,7 +107,9 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setUrl(data.cardURL);
-      });
+      })
+      .catch((error) => console.log(`Ha sucedido un error: ${error}`));
+
     setTimeout(() => setIsHidden(false), 2000);
     setTimeout(() => setIsLoading(false), 2000);
   };
