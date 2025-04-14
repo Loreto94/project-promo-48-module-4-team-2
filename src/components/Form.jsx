@@ -73,6 +73,7 @@ function Form(props) {
           id="name"
           placeholder="Nombre del proyecto"
           value={props.project.name}
+          required
         />
         <input
           onChange={handleChangeSlogan}
@@ -82,6 +83,7 @@ function Form(props) {
           id="slogan"
           placeholder="Slogan"
           value={props.project.slogan}
+          required
         />
         <div className="addForm__2col">
           <input
@@ -92,6 +94,7 @@ function Form(props) {
             id="repo"
             placeholder="Repositorio"
             value={props.project.repo}
+            required
           />
           <input
             onChange={handleChangeDemo}
@@ -101,6 +104,7 @@ function Form(props) {
             id="demo"
             placeholder="Demo"
             value={props.project.demo}
+            required
           />
         </div>
         <input
@@ -111,6 +115,7 @@ function Form(props) {
           id="technologies"
           placeholder="Tecnologías"
           value={props.project.technologies}
+          required
         />
         <textarea
           onChange={handleChangeDesc}
@@ -121,6 +126,7 @@ function Form(props) {
           placeholder="Descripción"
           rows="5"
           value={props.project.desc}
+          required
         ></textarea>
       </fieldset>
 
@@ -134,6 +140,7 @@ function Form(props) {
           id="autor"
           placeholder="Nombre"
           value={props.project.autor}
+          required
         />
         <input
           onChange={handleChangeJob}
@@ -143,6 +150,7 @@ function Form(props) {
           id="job"
           placeholder="Trabajo"
           value={props.project.job}
+          required
         />
       </fieldset>
 
@@ -155,9 +163,9 @@ function Form(props) {
           updateAvatar={onChangeUserImage}
           text="Subir foto de la autora"
         />
-        <button className="button--large" onClick={handleSaveProject}>
-          Guardar proyecto
-        </button>
+        <input type="submit" className="button--large" onClick={handleSaveProject} value=" Guardar proyecto" />
+         
+      
       </fieldset>
       <Loader classLoader={props.isLoading === true ? "loader" : ""} />
       <p className={`resultUrl ${props.isHidden ? "resultHidden" : ""}`}>
