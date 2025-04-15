@@ -57,12 +57,17 @@ function Form(props) {
 
   const handleResetButton = () => {
     props.onReset();
-  }
+  };
 
   return (
-    <form className="addForm">
+    <form className="addForm" onSubmit={handleSaveProject}>
       <h2 className="title">Información</h2>
-      <input type="reset" value="Reset" onClick={handleResetButton} className="button reset" />
+      <input
+        type="reset"
+        value="Reset"
+        onClick={handleResetButton}
+        className="button reset"
+      />
       <fieldset className="addForm__group">
         <legend className="addForm__title">Cuéntanos sobre el proyecto</legend>
         <input
@@ -163,13 +168,17 @@ function Form(props) {
           updateAvatar={onChangeUserImage}
           text="Subir foto de la autora"
         />
-        <input type="submit" className="button--large" onClick={handleSaveProject} value=" Guardar proyecto" />
-         
-      
+        <button type="submit" className="button--large">
+          Guardar proyecto
+        </button>
       </fieldset>
       <Loader classLoader={props.isLoading === true ? "loader" : ""} />
       <p className={`resultUrl ${props.isHidden ? "resultHidden" : ""}`}>
-        {props.url === undefined ? "Ha habido un error" : <a href={props.url}>Mira el resultado de tu proyecto aquí</a>} 
+        {props.url === undefined ? (
+          "Ha habido un error"
+        ) : (
+          <a href={props.url}>Mira el resultado de tu proyecto aquí</a>
+        )}
       </p>
     </form>
   );

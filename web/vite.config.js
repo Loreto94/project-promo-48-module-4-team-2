@@ -7,6 +7,5 @@ export default defineConfig({
     watch: { usePolling: true },
     open: true, // Abre automáticamente el navegador
   },
-  plugins: [react()],
-  base: "project-promo-48-module-4-team-2",
+  plugins: [react()]
 });

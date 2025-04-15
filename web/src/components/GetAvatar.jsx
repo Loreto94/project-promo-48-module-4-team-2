@@ -71,6 +71,7 @@ function GetAvatar({
           ref={myFileField}
           style={{ display: "none" }}
           onChange={uploadImage}
+          required
         />
       </label>
 
