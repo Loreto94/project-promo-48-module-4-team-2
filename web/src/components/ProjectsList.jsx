@@ -7,12 +7,9 @@ function ProjectsList({ projects }) {
       <Hero textButton="Nuevo proyecto" linkButton="/" />
       <section className="cardList--container">
         <ul className="cardList">
-          {projects.map(
-            (project, index) =>
-              `<li key=${index}>
-             ${(<ProjectCard project={project} />)}
-            </li>`
-          )}
+          {projects.map((project, index) => (
+            <li key={index}>{<ProjectCard project={project} />}</li>
+          ))}
         </ul>
       </section>
     </>

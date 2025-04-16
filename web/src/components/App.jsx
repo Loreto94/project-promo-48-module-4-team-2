@@ -128,15 +128,17 @@ function App() {
       image: "",
       photo: "",
     });
-    setIsHidden(true)
+    setIsHidden(true);
   };
 
-  fetch("http://localhost:5001/project/list")
-    .then((res) => res.json())
-    .then((data) => {
-      const fakeProjects = data.result;
-       setFakeProjects(fakeProjects);
-    });
+  useEffect(() => {
+    fetch("http://localhost:5001/project/list")
+      .then((res) => res.json())
+      .then((data) => {
+        const fakeProjects = data.result;
+        setFakeProjects(fakeProjects);
+      });
+  }, []);
 
   return (
     <div className="container">
