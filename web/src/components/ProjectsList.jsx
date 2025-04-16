@@ -1,27 +1,18 @@
 import ProjectCard from "./ProjectCard";
 import Hero from "./Hero";
 
-function ProjectsList({ project }) {
+function ProjectsList({ projects }) {
   return (
     <>
       <Hero textButton="Nuevo proyecto" linkButton="/" />
       <section className="cardList--container">
         <ul className="cardList">
-          <li>
-            <ProjectCard project={project} />
-          </li>
-          <li>
-            <ProjectCard project={project} />
-          </li>
-          <li>
-            <ProjectCard project={project} />
-          </li>
-          <li>
-            <ProjectCard project={project} />
-          </li>
-          <li>
-            <ProjectCard project={project} />
-          </li>
+          {projects.map(
+            (project, index) =>
+              `<li key=${index}>
+             ${(<ProjectCard project={project} />)}
+            </li>`
+          )}
         </ul>
       </section>
     </>

@@ -27,6 +27,7 @@ function App() {
   const [url, setUrl] = useState("");
   const [isHidden, setIsHidden] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [fakeProjects, setFakeProjects] = useState([]);
 
   useEffect(() => {
     ls.set("User info", projectInfo);
@@ -130,6 +131,13 @@ function App() {
     setIsHidden(true)
   };
 
+  fetch("http://localhost:5001/project/list")
+    .then((res) => res.json())
+    .then((data) => {
+      const fakeProjects = data.result;
+       setFakeProjects(fakeProjects);
+    });
+
   return (
     <div className="container">
       <Header />
@@ -166,7 +174,7 @@ function App() {
             path="/projects"
             element={
               <section className="second--main">
-                <ProjectsList project={projectInfo} />
+                <ProjectsList projects={fakeProjects} />
               </section>
             }
           />
