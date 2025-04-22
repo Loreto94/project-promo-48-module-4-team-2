@@ -1,79 +1,63 @@
 const express = require("express");
 const cors = require("cors");
-
+const mysql = require("mysql2/promise");
 const server = express();
 
 server.use(cors());
+server.use(express.json());
+
+async function getDBConnection() {
+  const connection = await mysql.createConnection({
+   
+  });
+  connection.connect();
+  return connection;
+}
 
 const staticServerPath = "./web/dist";
 server.use(express.static(staticServerPath));
 
 const port = 5001;
 server.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-})
+  console.log(`Server is running on http://localhost:${port}`);
+});
 
-const fakeProjects = [
-    {
-      name: "EcoMarket",
-      slogan: "Compra sostenible, viu millor",
-      repo: "https://github.com/usuari/ecomarket",
-      demo: "https://ecomarket-demo.netlify.app",
-      technologies: "HTML, CSS, JavaScript, React",
-      desc: "Aplicació web per comprar productes ecològics de proximitat amb filtres personalitzats.",
-      autor: "Mafe",
-      job: "Frontend Developer",
-      image: "https://example.com/images/ecomarket.png",
-      photo: "https://img.freepik.com/free-vector/cute-girl-hacker-operating-laptop-cartoon-vector-icon-illustration-people-technology-isolated-flat_138676-9487.jpg"
-    },
-    {
-      name: "TaskTrackr",
-      slogan: "Organitza't com un pro",
-      repo: "https://github.com/usuari/tasktrackr",
-      demo: "https://tasktrackr.app",
-      technologies: "Vue, Node.js, MongoDB",
-      desc: "Gestor de tasques amb sistema de notificacions i vista per projectes col·laboratius.",
-      autor: "Begoña",
-      job: "Full Stack Developer",
-      image: "https://example.com/images/tasktrackr.png",
-      photo: "https://img.freepik.com/premium-photo/female-developer-background_665280-9650.jpg"
-    },
-    {
-      name: "FitYou",
-      slogan: "La teva rutina, el teu estil",
-      repo: "https://github.com/usuari/fityou",
-      demo: "https://fityou.app",
-      technologies: "Angular, Firebase",
-      desc: "App de seguiment d'exercicis i nutrició amb recomanacions personalitzades.",
-      autor: "Loreto",
-      job: "Frontend Developer",
-      image: "https://example.com/images/fityou.png",
-      photo: "https://c8.alamy.com/comp/KCCEFC/software-language-programmer-avatar-KCCEFC.jpg"
-    },
-    {
-      name: "CulturaViva",
-      slogan: "Descobreix, comparteix, viu la cultura",
-      repo: "https://github.com/usuari/culturaviva",
-      demo: "https://culturaviva.cat",
-      technologies: "React, Express, PostgreSQL",
-      desc: "Plataforma per trobar i promocionar esdeveniments culturals locals.",
-      autor: "Laia",
-      job: "Backend Developer",
-      image: "https://example.com/images/culturaviva.png",
-      photo: "https://cdn.vectorstock.com/i/preview-1x/67/31/programmer-icon-profession-and-job-vector-33186731.jpg"
-    }
-  ];  
+server.get("/api/projects", async (req, res) => {
+  const connection = await getDBConnection();
+  let query = "SELECT * FROM projectsData, userData WHERE projectsData.fk_userData = userData.idUser";
+  const { idProject, name, slogan, repo, demo, technologies, description, image, fk_userData, idUser, job, photo } = req.query;
 
-server.get("/project/list",(req, res) => {
-    if (fakeProjects.length === 0) {
-        res.status(404).json({
-            status: "error",
-            message: "No se han encontrado resultados"
-        }) 
-    } else {
-        res.status(200).json({
-            status:"success",
-            result: fakeProjects
-        })
-    }
+  const [projectsResult] = await connection.query(query, idProject, name, slogan, repo, demo, technologies, description, image, fk_userData, idUser, job, photo)
+
+  res.status(200).json({
+    success: true,
+    result: projectsResult,
+  });
+});
+
+server.post("/api/newproject", async (req, res) => {
+  const connection = await getDBConnection();
+  const projectInfo = req.body;
+
+  const queryAuthor = "INSERT INTO userData (autor, job, photo) VALUES (?, ?, ?)";
+  
+  const [authorResult] = await connection.query(queryAuthor, [projectInfo.autor, projectInfo.job, projectInfo.photo])
+
+  const queryProject = "INSERT INTO projectsData (name, slogan, repo, demo, technologies, description, image, fk_userData) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  const [projectResult] = await connection.query(queryProject, [
+    projectInfo.name,
+    projectInfo.slogan,
+    projectInfo.repo,
+    projectInfo.demo,
+    projectInfo.technologies,
+    projectInfo.description,
+    projectInfo.image,
+    authorResult.insertId
+  ])
+
+  connection.end();
+  res.status(201).json({
+    success: true,
+    cardUrl: ""
+  })
 })
