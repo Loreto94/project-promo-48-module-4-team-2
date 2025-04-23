@@ -4,14 +4,21 @@ const mysql = require("mysql2/promise");
 const server = express();
 
 server.use(cors());
+
 server.use(express.json({ limit: "10mb" }));
 server.use(express.urlencoded({ limit: "10mb", extended: true }));
+
+require("dotenv").config();
 
 server.set("view engine", "ejs");
 
 async function getDBConnection() {
   const connection = await mysql.createConnection({
-   
+    host: "mysql-2db53e6d-proyectos-molones-2.b.aivencloud.com",
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: "defaultdb",
+    port: 17047,
   });
   connection.connect();
   return connection;
@@ -20,7 +27,7 @@ async function getDBConnection() {
 const staticServerPath = "./web/dist";
 server.use(express.static(staticServerPath));
 
-const port = 5001;
+const port = process.env.PORT;
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
