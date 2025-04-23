@@ -98,7 +98,7 @@ function App() {
 
   const handleSubmitProject = () => {
     setIsLoading(true);
-    fetch("https://dev.adalab.es/api/projectCard", {
+    fetch("http://localhost:5001/api/newproject", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -132,7 +132,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5001/project/list")
+    fetch("http://localhost:5001/api/projects")
       .then((res) => res.json())
       .then((data) => {
         const fakeProjects = data.result;
