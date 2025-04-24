@@ -177,7 +177,7 @@ function Form(props) {
         {props.url === undefined ? (
           "Ha habido un error"
         ) : (
-          <a href={props.url}>Mira el resultado de tu proyecto aquí</a>
+          <a href={props.url} target="_blank">Mira el resultado de tu proyecto aquí</a>
         )}
       </p>
     </form>

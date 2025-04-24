@@ -24,7 +24,7 @@ async function getDBConnection() {
   return connection;
 }
 
-const staticServerPath = "./web/dist";
+const staticServerPath = "./src/public-react";
 server.use(express.static(staticServerPath));
 
 const port = process.env.PORT;
@@ -98,7 +98,6 @@ server.post("/api/newproject", async (req, res) => {
     projectInfo.image,
     authorResult.insertId,
   ]);
-  console.log("Description:", projectInfo.description);
   connection.end();
   res.status(201).json({
     success: true,
@@ -116,5 +115,5 @@ server.get("/api/detail/:idProject", async (req, res) => {
 
   connection.end();
 
-  res.render("projectDetail", { project: result });
+  res.render("projectDetail", { project: result[0] });
 });

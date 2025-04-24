@@ -17,7 +17,7 @@ function App() {
       repo: "",
       demo: "",
       technologies: "",
-      desc: "",
+      description: "",
       autor: "",
       job: "",
       image: "",
@@ -66,7 +66,7 @@ function App() {
   const changeDesc = (value) => {
     setProjectInfo({
       ...projectInfo,
-      desc: value,
+      description: value,
     });
   };
   const changeName = (value) => {
@@ -107,7 +107,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setUrl(data.cardURL);
+        setUrl(data.cardUrl);
       })
       .catch((error) => console.log(`Ha sucedido un error: ${error}`));
 
@@ -122,7 +122,7 @@ function App() {
       repo: "",
       demo: "",
       technologies: "",
-      desc: "",
+      description: "",
       autor: "",
       job: "",
       image: "",
