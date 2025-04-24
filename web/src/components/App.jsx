@@ -1,3 +1,4 @@
+/* global process */
 import "../scss/App.scss";
 import { useEffect, useState } from "react";
 import Header from "./Header";
@@ -8,6 +9,11 @@ import Hero from "./Hero";
 import ls from "../services/localStorage";
 import ProjectsList from "./ProjectsList";
 import { Route, Routes } from "react-router-dom";
+// import { process } from "dotenv";
+
+const URL_PRODUCTION = "https://project-promo-48-module-4-team-2.onrender.com";
+const URL_LOCAL = "http://localhost:5001";
+const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
 
 function App() {
   const [projectInfo, setProjectInfo] = useState(
@@ -98,7 +104,7 @@ function App() {
 
   const handleSubmitProject = () => {
     setIsLoading(true);
-    fetch("http://localhost:5001/api/newproject", {
+    fetch(`${URL}/api/newproject`, {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -132,7 +138,7 @@ function App() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5001/api/projects")
+    fetch(`${URL}/api/projects`)
       .then((res) => res.json())
       .then((data) => {
         const fakeProjects = data.result;
