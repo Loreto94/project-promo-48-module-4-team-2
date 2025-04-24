@@ -12,6 +12,10 @@ require("dotenv").config();
 
 server.set("view engine", "ejs");
 
+const URL_PRODUCTION = "https://project-promo-48-module-4-team-2.onrender.com";
+const URL_LOCAL = "http://localhost:5001";
+const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
+
 async function getDBConnection() {
   const connection = await mysql.createConnection({
     host: "mysql-2db53e6d-proyectos-molones-2.b.aivencloud.com",
@@ -101,7 +105,7 @@ server.post("/api/newproject", async (req, res) => {
   connection.end();
   res.status(201).json({
     success: true,
-    cardUrl: `http://localhost:5001/api/detail/${projectResult.insertId}`,
+    cardUrl: `${URL}/api/detail/${projectResult.insertId}`,
   });
 });
 

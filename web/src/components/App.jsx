@@ -9,7 +9,6 @@ import Hero from "./Hero";
 import ls from "../services/localStorage";
 import ProjectsList from "./ProjectsList";
 import { Route, Routes } from "react-router-dom";
-// import { process } from "dotenv";
 
 const URL_PRODUCTION = "https://project-promo-48-module-4-team-2.onrender.com";
 const URL_LOCAL = "http://localhost:5001";
