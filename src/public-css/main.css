@@ -1,0 +1,36 @@
+.container {
+  padding: 22px 22px 0 22px;
+  background-color: #302c42;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  font: 300 1.4rem "Poppins", sans-serif;
+  color: #ffffff;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.project-img {
+    height: 300px;
+}
+
+.card {
+    background-color: #ffffff;
+    width: 300px;
+    border-radius: 10px;
+}
+
+.author-img {
+    height: 50px;
+    border-radius: 50px;
+}

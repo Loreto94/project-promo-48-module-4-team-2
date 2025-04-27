@@ -15,6 +15,8 @@ server.set("view engine", "ejs");
 const URL_PRODUCTION = "https://project-promo-48-module-4-team-2.onrender.com";
 const URL_LOCAL = "http://localhost:5001";
 const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
+// const URL = URL_LOCAL;
+
 
 async function getDBConnection() {
   const connection = await mysql.createConnection({
@@ -30,6 +32,9 @@ async function getDBConnection() {
 
 const staticServerPath = "./src/public-react";
 server.use(express.static(staticServerPath));
+
+const pathServerPublicStyles = "./src/public-css";
+server.use(express.static(pathServerPublicStyles));
 
 const port = process.env.PORT;
 server.listen(port, () => {
