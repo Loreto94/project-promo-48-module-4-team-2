@@ -12,10 +12,8 @@ require("dotenv").config();
 
 server.set("view engine", "ejs");
 
-const URL_PRODUCTION = "https://project-promo-48-module-4-team-2.onrender.com";
-const URL_LOCAL = "http://localhost:5001";
-const URL = process.env.NODE_ENV === "development" ? URL_LOCAL : URL_PRODUCTION;
-// const URL = URL_LOCAL;
+const URL = process.env.NODE_ENV === "development" ? process.env.URL_LOCAL : process.env.URL_PRODUCTION;
+console.log(process.env.NODE_ENV);
 
 
 async function getDBConnection() {
