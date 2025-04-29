@@ -18,8 +18,7 @@ function ProjectCard({ project }) {
       <div className="card__project">
         <h3 className="card__name">{project.name || "Nombre del proyecto"}</h3>
         <p className="card__slogan">{project.slogan || "Slogan"}</p>
-        <h3 className="card__descriptionTitle">Product description</h3>
-        <p className="card__description">{project.desc || "Descripción"}</p>
+        <p className="card__description">{project.description || "Descripción"}</p>
 
         <div className="card__technicalInfo">
           <p className="card__technologies">

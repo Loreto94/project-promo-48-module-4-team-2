@@ -13,7 +13,6 @@ require("dotenv").config();
 server.set("view engine", "ejs");
 
 const URL = process.env.NODE_ENV === "development" ? process.env.URL_LOCAL : process.env.URL_PRODUCTION;
-console.log(process.env.NODE_ENV);
 
 
 async function getDBConnection() {
@@ -33,6 +32,9 @@ server.use(express.static(staticServerPath));
 
 const pathServerPublicStyles = "./src/public-css";
 server.use(express.static(pathServerPublicStyles));
+
+const pathServerPublicImages = "./src/public-images";
+server.use(express.static(pathServerPublicImages));
 
 const port = process.env.PORT;
 server.listen(port, () => {

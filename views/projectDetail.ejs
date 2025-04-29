@@ -8,20 +8,43 @@
   </head>
   <body class="container">
     <header class="header">
-      <h1 class="title">Proyectos Molones</h1>
+      <a
+        href="https://project-promo-48-module-4-team-2.onrender.com"
+        class="brand"
+      >
+        <img src="/laptop.png" alt="Proyectos molones" />
+        <h1 class="title">Proyectos Molones</h1>
+      </a>
+      <img class="img-logo" src="/logoAdalab.png" alt="Logo Adalab" />
     </header>
     <main class="main">
-      <img class="project-img" src="<%= project.image %>" alt="Imagen proyecto" />
+      <img
+        class="project-img"
+        src="<%= project.image %>"
+        alt="Imagen proyecto"
+      />
       <div class="card">
-        <h4><%= project.name %></h4>
-        <p><%= project.slogan %></p>
-        <p><%= project.description %></p>
-        <p><%= project.technologies %></p>
-        <a href="<%= project.repo %>" target="_blank">Repo</a>
-        <a href="<%= project.demo %>" target="_blank">Demo</a>
-        <img class="author-img" src="<%= project.photo %>" alt="Foto usuaria" />
-        <p><%= project.job %></p>
-        <p><%= project.autor %></p>
+        <div class="author">
+          <img
+            class="author-img"
+            src="<%= project.photo %>"
+            alt="Foto usuaria"
+          />
+          <p class="job"><%= project.job %></pclass>
+          <p class="author-name"><%= project.autor %></p>
+        </div>
+        <div>
+          <h4><%= project.name %></h4>
+          <p class="slogan"><%= project.slogan %></p>
+          <p class="description"><%= project.description %></p>
+          <p class="technologies"><%= project.technologies %></p>
+          <a href="<%= project.repo %>" target="_blank"
+            ><img class="github-img" src="/github.svg" alt="GitHub profile"
+          /></a>
+          <a href="<%= project.demo %>" target="_blank"
+            ><img class="demo-img" src="/globe-solid.svg" alt="Demo"
+          /></a>
+        </div>
       </div>
     </main>
   </body>
